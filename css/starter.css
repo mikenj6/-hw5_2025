@@ -72,16 +72,20 @@ No part of the gallery should be visible.
 Without using list-style-type add the thumbs up entity as shown in the cards. This is a challenge problem. You should not give or receive help when completing it.**For some people the thumbs up is not printing as yellow. That is fine.
 
 */
+
+/*code for animation phasing from lowest to max*/
 @keyframes growEffect {
   0% {width: 25px; opacity: 0;}
   100% {width: 475px; opacity: 1;
   }
 }
 
+/*code for logo*/
 #logo {
   width: 25px;
   height: auto;
   opacity: 0;
+  /*actual code for animation*/
   animation: growEffect 5s ease-out forwards;
 }
 
@@ -90,10 +94,12 @@ body{
   margin: 0;
   padding: 0;
   font-size: 1rem; /* test for this! Make all sizes em or rem */
+  /*attempt to make background the concreate seamless png*/
   background-image: url('concrete_seamless.png');
   background-color:#f1f1f1;
   }
 
+  /*makes header flex and makes it the right color while also making it have correct spacing*/
   header {
   display: flex;
   flex-direction: column;
@@ -102,23 +108,25 @@ body{
   margin-bottom: 20px;
   align-items: center;
   }
-
+/*code for h1*/
   h1{
   font-size: 2em;
   text-align: center;
   line-height: 2;
   }
-  
+  /*code for h2*/
   h2{
   font-size: 1.5em;
   text-align: center;
   padding: 5px;
   }
   
+  /*padding for paragraphs*/
   p {
   padding: 0 30px;
   }
   
+  /*code for the skip elements  that cause skip to main to be off screen when not in focus*/
   a.skip{
   background: white;
   left: 0;
@@ -129,37 +137,44 @@ body{
   transition: top 1s ease-out;
   z-index: 1;
   }
-  
+  /*code for skip to main that makes it appear once it focus*/
   a.skip:focus{
   top:20px;
   color: black;
   text-decoration-style: solid;
   }
-  
+
+  /*when things are in focus it givens them a border*/
   *:focus{
   border: 2px solid black;
   }
 
+/*makes the nav links use flex and alligns them to center*/
   .nav_links a{
   display: flex;
   text-align: center;
   }
 
+  /*gives paddding to nav items*/
   .nav_item a{
   padding: 10px;
   }
   
+  /*changes the color of nav item elements in focus and hover state and underlines and gives them a dotted pattern*/
   .nav_item a:hover, a:focus{
   color: #50C7C7;
   text-decoration: underline;
   -webkit-text-decoration-style: dotted;
       text-decoration-style: dotted;
   }
+
+  /*changes color of hyperlinks that are visited to remain blue rather than become pruple*/
   .nav_links a:visited {
   color: blue;
   }
 
-  
+  /*changes cards that are child of header to have colored background as well as border and padding
+  also makes them have rounded corners*/
   .card > header {
   background: #288088;
   border: 2px solid #45ADAD;
@@ -168,6 +183,8 @@ body{
   border-top-right-radius: 50px;
   }
 
+  /*updates the card elements to have margins padding to the left and use flex that is 
+  50% as well as giving them rounded corners*/
   .card {
   margin: 12px;
   background: #fff;
@@ -181,6 +198,7 @@ body{
   border-top-right-radius: 50px;
   }
 
+  /*uses flex and makes specific padding to match the image given*/
   .pricing {
   display: flex;
   flex-wrap: wrap;
@@ -191,7 +209,7 @@ body{
   padding-top: 2%;
   padding-bottom: 2%;
   }
-
+/*applies to the unordered lisst elements in card and makes them just have padding to left*/
   .card > ul{
   list-style: none;
   padding-left: 5px;
@@ -202,7 +220,7 @@ body{
   margin: 20px auto;
   
   }
-
+/*changes how the button in card looks*/
 .card button{
   width: 90%;
   height: 40px;
@@ -213,6 +231,7 @@ body{
   color: white;
   font-size: 1em;
   }
+  
   
   .card h3{
   font-size: 4em;
@@ -225,46 +244,48 @@ body{
   margin: 10px;
   width: 300px;
   }
-
+/*justifies the elements in gallery to be centered and use flex*/
   .gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   }
-  
+  /*ccode for the footer making it black with 30px padding*/
   footer{
     background-color: black;
     color: white;
     padding: 30px;
     text-align: center;
   }
-
+  /*when screen is bigger than 900px it uses certain styles*/
   @media (min-width: 900px) {
+    /*code that makes the header be top layer and stay at the top of the screen no matter where you scroll*/
     body >header {
         position: sticky;
         display: flex;
         top: 0;
         flex-direction: row;
+        /*changes the content to have space from the img to the list in the header*/
         justify-content: space-between;
         width: 100%;
         z-index: 9999;
       }
-
+      /*code that affects the format of the header to be a row rather than vertical */
       .nav_links li{
           display: inline-block;
         }
 
-        
+        /*makes the cards use flex and be about 275px*/
         .card {
           z-index: 0;
           flex: 1 1 275px;
         }
-
+        /*for the second element it makes it be slightly taller as stated in the isntructions*/
         .card:nth-child(even) {
           transform: scaleY(1.1);
       }
   }
-
+  /*when useer specifies that they want reduced motion it cancels animation in the header*/
   @media (prefers-reduced-motion: reduce) {
     #logo {
       animation: none; 
@@ -273,52 +294,56 @@ body{
     }
   }
 
-
+/*uses important to be able to override all the other cases*/
+/*this section is dedicated to being the format of the website if the user wants to print a sheet out*/
   @media print {
     body {
-        font-family: Arial, Helvetica, sans-serif;
+
+      /*arial with hevetca as backup*/
+        font-family: Arial, Helvetica;
         background: none !important;
     }
-
+/*makes sure that header uses flex and everything is alligned to center*/
     header {
         display: flex !important;
         flex-direction: column !important; /* Stack elements vertically */
         align-items: center !important; /* Center align */
         text-align: center !important;
     }
-
+/*moves the image to be above the list*/
     #logo {
         order: -1 !important; /* Moves the image to the top */
     }
-
+/*puts sthe ordered list below the image*/
     nav {
         order: 1 !important; /* Moves navigation below the image */
         width: 100% !important;
     }
-
+/*makes navigation links to be flex and have a certain gap*/
     .nav_links {
         display: flex !important;
         justify-content: center !important;
         gap: 20px !important;
     }
-
+/*changes spacing for pricing*/
     .pricing {
         display: flex !important;
         justify-content: space-between !important;
         align-items: flex-end !important;
         flex-wrap: nowrap !important;
     }
-
+/*card is a flex with a certain size */
     .card {
         flex: 1 1 325px !important;
         border: 2px solid #45ADDD !important;
+        /*forces page to print entire element without cutting parts of it*/
         page-break-inside: avoid !important;
     }
-
+    
     .gallery {
         display: none !important;
     }
-
+    /*adds the thumbs up to all of the elements*/
     .card > ul li::before {
         content: "👍 ";
         font-size: 1rem;
